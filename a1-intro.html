@@ -14,9 +14,17 @@
         container: 'konvaCanvas',
         width: window.innerWidth,
         height: window.innerHeight
+  
     });
+
+    let background = new Konva.Layer()
+    stage.add(background);
+
+    
+
     let layer = new Konva.Layer();
-	stage.add(layer); // add the layer to the stage
+    
+    stage.add(layer); // add the layer to the stage
 
     //----- Ignore everything above here for now -----//
     
@@ -24,16 +32,99 @@
 
     // A sample shape to get you started
     // Free free to change or delete this circle
-    let circle = new Konva.Circle({
-        x: 100,
-        y: 100,
+
+
+ let leftarm = new Konva.Wedge({
+        x: stage.width() / 3.15,
+        y: stage.height() / 2,
         radius: 70,
-        fill: 'red',
-        stroke: 'black',
+        angle: 60,
+        fill: 'pink',
+        stroke: 'pink',
         strokeWidth: 4,
-        draggable: true
-    });
-    layer.add(circle); // add the shape to the layer
+        rotation: 0,
+      });
+
+
+    layer.add(leftarm); // add the shape to the layer
+
+    let rightarm = new Konva.Wedge({
+        x: stage.width() / 2.2,
+        y: stage.height() / 2,
+        radius: 70,
+        angle: 60,
+        fill: 'pink',
+        stroke: 'pink',
+        strokeWidth: 4,
+        rotation: 120,
+      });
+
+    layer.add(rightarm);
+
+    let leftleg = new Konva.Wedge({
+        x: stage.width() / 2.75,
+        y: stage.height() / 1.5,
+        radius: 80,
+        angle: 60,
+        fill: 'pink',
+        stroke: 'pink',
+        strokeWidth: 4,
+        rotation: -120,
+      });
+
+    layer.add(leftleg);
+
+    let rightleg = new Konva.Wedge({
+        x: stage.width() / 2.45,
+        y: stage.height() / 1.5,
+        radius: 80,
+        angle: 60,
+        fill: 'pink',
+        stroke: 'pink',
+        strokeWidth: 4,
+        rotation: -120,
+      });
+
+    layer.add(rightleg);
+
+    let head = new Konva.Wedge({
+        x: stage.width() / 2.6,
+        y: stage.height() / 2.45,
+        radius: 100,
+        angle: 60,
+        fill: 'pink',
+        stroke: 'pink',
+        strokeWidth: 4,
+        rotation: 60,
+      });
+
+    layer.add(head);
+
+    let body = new Konva.Rect({
+        x: 645,
+        y: 485,
+        width: 190,
+        height: 70,
+        fill: 'pink',
+        stroke: 'pink',
+        strokeWidth: 4,
+      });
+
+      layer.add(body);
+
+      let pants = new Konva.Rect({
+        x: 645,
+        y: 555,
+        width: 190,
+        height: 45,
+        fill: 'green',
+        stroke: 'green',
+        strokeWidth: 4,
+      });
+
+      layer.add(pants);
+
+      
   
     //----- Begin adding your own shapes here -----//
   
