@@ -12,8 +12,8 @@
 
     let stage = new Konva.Stage({
         container: 'konvaCanvas',
-        width: window.innerWidth,
-        height: window.innerHeight
+        width: 1920,
+        height: 970
   
     });
 
@@ -31,19 +31,46 @@
 
       background.add(sky);    
 
-    let star = new Konva.Star(x,y,points,inRadius, outRadius, colourFill, colourStroke, stroke,{
-        x: stage.width() / x,
-        y: stage.height() / y,
-        numPoints: points,
-        innerRadius: inRadius,
-        outerRadius: outRadius,
-        fill: colourFill,
-        stroke: colourStroke,
-        strokeWidth: stroke,
-      });
+    for (let i = 0; i < 10; i++) {
+      let starPurple = new Konva.Star({
+          x: i*250 + 100,
+          y: i*250 + 100,
+          numPoints: 6,
+          innerRadius: 100,
+          outerRadius: 130,
+          stroke: 'purple',
+          strokeWidth: 4,
+        });
+      background.add(starPurple);
+      
+    }
 
-    background.add(star(2,2,6,6,3,'pink','black',4))
+    for (let i = 0; i < 10; i++) {
+      let starOrange = new Konva.Star({
+          x: i*255 + 400,
+          y: i*255 + 100,
+          numPoints: 6,
+          innerRadius: 70,
+          outerRadius: 100,
+          stroke: '#ffb163',
+          strokeWidth: 4,
+        });
+      background.add(starOrange);
+      
+    }
 
+      
+
+      // star.x = stage.width() / 2,
+      // star.y = stage.height() / 2,
+      // star.numPoints(3)
+      // star.innerRadius = 50
+      // star.outerRadius = 40
+      // star.fill = 'black'
+      // star.stroke = 'yellow'
+      // star.strokeWidth = 2
+
+      // background.add(star);
 
     let layer = new Konva.Layer();
     
@@ -133,7 +160,19 @@
         strokeWidth: 4,
       });
 
+
       layer.add(body);
+
+      // let patrick = new. Konva.Star({
+      //     x: ,
+      //     y: ,
+      //     numPoints: 5,
+      //     innerRadius: 50,
+      //     outerRadius: 50,
+      //     fill: 'pink',
+      //     strokeWidth: 4,
+
+      // })
 
       let pants = new Konva.Rect({
         x: 645,
