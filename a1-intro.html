@@ -20,7 +20,29 @@
     let background = new Konva.Layer()
     stage.add(background);
 
-    
+    let sky = new Konva.Rect({
+        x: 0,
+        y: 0,
+        width: 2000,
+        height: 1000,
+        fill: '#72d4db'
+
+      });
+
+      background.add(sky);    
+
+    let star = new Konva.Star(x,y,points,inRadius, outRadius, colourFill, colourStroke, stroke,{
+        x: stage.width(2000) / x,
+        y: stage.height(1000) / y,
+        numPoints: points,
+        innerRadius: inRadius,
+        outerRadius: outRadius,
+        fill: colourFill,
+        stroke: colourStroke,
+        strokeWidth: stroke,
+      });
+
+    layer.add(star(200,200,6,6,3,'pink','black',4))
 
     let layer = new Konva.Layer();
     
@@ -117,13 +139,36 @@
         y: 555,
         width: 190,
         height: 45,
-        fill: 'green',
-        stroke: 'green',
+        fill: '#acf075',
+        stroke: '#acf075',
         strokeWidth: 4,
       });
 
       layer.add(pants);
 
+      let pantleft = new Konva.Rect({
+        x: 670,
+        y: 600,
+        width: 55,
+        height: 25,
+        fill: '#acf075',
+        stroke: '#acf075',
+        strokeWidth: 4,
+      });
+
+      layer.add(pantleft);
+
+      let pantright = new Konva.Rect({
+        x: 755,
+        y: 600,
+        width: 55,
+        height: 25,
+        fill: '#acf075',
+        stroke: '#acf075',
+        strokeWidth: 4,
+      });
+
+      layer.add(pantright);
       
   
     //----- Begin adding your own shapes here -----//
