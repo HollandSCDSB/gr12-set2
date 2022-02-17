@@ -39,7 +39,7 @@
           innerRadius: 100,
           outerRadius: 130,
           stroke: 'purple',
-          strokeWidth: 4,
+          strokeWidth: 5,
         });
       background.add(starPurple);
       
@@ -49,17 +49,71 @@
       let starOrange = new Konva.Star({
           x: i*255 + 400,
           y: i*255 + 100,
-          numPoints: 6,
+          numPoints: 8,
           innerRadius: 70,
           outerRadius: 100,
           stroke: '#ffb163',
-          strokeWidth: 4,
+          strokeWidth: 3,
         });
       background.add(starOrange);
       
     }
 
+    for (let i = 0; i < 10; i++) {
+      let starGreen = new Konva.Star({
+          x: i*255 - 500,
+          y: i*255 - 100,
+          numPoints: 7,
+          innerRadius: 70,
+          outerRadius: 100,
+          stroke: '#8bf56e',
+          strokeWidth: 7,
+        });
+      background.add(starGreen);
       
+    }
+
+    for (let i = 0; i < 10; i++) {
+      let starYellow = new Konva.Star({
+          x: i*300 -1000,
+          y: i*300 - 250,
+          numPoints: 9,
+          innerRadius: 130,
+          outerRadius: 150,
+          stroke: '#fafa6e',
+          strokeWidth: 5,
+        });
+      background.add(starYellow);
+      
+    }
+
+    for (let i = 0; i < 10; i++) {
+      let starPink = new Konva.Star({
+          x: i*275 + 750,
+          y: i*275 + 75,
+          numPoints: 10,
+          innerRadius: 75,
+          outerRadius: 115,
+          stroke: '#f173ff',
+          strokeWidth: 8,
+        });
+      background.add(starPink);
+
+    }
+
+    for (let i = 0; i < 10; i++) {
+      let starBlue = new Konva.Star({
+          x: i*275 + 1250,
+          y: i*275 + 100,
+          numPoints: 7,
+          innerRadius: 125,
+          outerRadius: 150,
+          stroke: '#0800a1',
+          strokeWidth: 4,
+        });
+      background.add(starBlue);
+
+    }
 
       // star.x = stage.width() / 2,
       // star.y = stage.height() / 2,
@@ -209,6 +263,43 @@
       });
 
       layer.add(pantright);
+
+      let leftEye = new Konva.Ellipse({
+        x: 700,
+        y: 500,
+        radiusX: 10,
+        radiusY: 20,
+        fill: 'white',
+        stroke: 'black',
+        strokeWidth: 4,
+      });
+
+      layer.add(leftEye);
+
+      let rightEye = new Konva.Ellipse({
+        x: 775,
+        y: 500,
+        radiusX: 10,
+        radiusY: 20,
+        fill: 'white',
+        stroke: 'black',
+        strokeWidth: 4,
+      });
+
+      layer.add(rightEye);
+
+      let smile = new Konva.Arc({
+        x: 735,
+        y: 525,
+        innerRadius: 10,
+        outerRadius: 5,
+        angle: 180,
+        fill: 'red',
+        stroke: 'black',
+        strokeWidth: 4,
+      });
+
+      layer.add(smile)
       
   
     //----- Begin adding your own shapes here -----//
