@@ -18,39 +18,21 @@
     let layer = new Konva.Layer();
 	stage.add(layer); // add the layer to the stage
 
-    //----- Ignore everything above here for now -----//
-
-    // The data structure to hold the state of the game
-    // let gameData = {
-    //     backgroundColor: "lightblue",
-    //     player: {
-    //         name: "Dave",
-    //         lives: 3,
-    //         x: 150,
-    //         y: 200
-    //     },
-    //     opponent: {
-    //         name: "Bad dude",
-    //         x: 300,
-    //         y: 100
-    //     }
-    // }
 
 let episode = {
-    background: "#52d1c4",
         Spongebob: {
             name: "Spongebob",
             jellyfish: 0,
             nets: 0,
-            x: 100,
-            y: 100,
+            x: 500,
+            y: 325,
         },
         Patrick: {
             name: "Patrick",
             jellyfish: 0,
             nets: 0,
-            x: 500,
-            y: 100,
+            x: 850,
+            y: 325,
         }
     
 }
@@ -59,28 +41,104 @@ let episode = {
 
     addGrid(Konva, layer); // comment this line to remove the grid
 
-    // // A rectangle to represent the background
-    let background = new Konva.Rect({
-        x: 0,
-        y: 0,
-        opacity: 0.5, // allows us to see the grid underneat
-        width: stage.width(),
-        height: stage.height(),
-        fill: episode.background,
-    });
-    layer.add(background);
+// background
 
-    // // The circle to represent the player
-    // let circle = new Konva.Circle({
-    //     x: gameData.player.x,
-    //     y: gameData.player.y,
-    //     radius: 20,
-    //     fill: 'blue',
-    //     stroke: 'black',
-    //     strokeWidth: 4,
-    // });
-    // layer.add(circle); 
-  
+    let fields = new Konva.Layer();
+    stage.add(fields)
+
+    let jellyFishFieldsObj = new Image();
+    jellyFishFieldsObj.onload = function () {
+        let background = new Konva.Image({
+            x: 0,
+            y: 0,
+            image: jellyFishFieldsObj,
+        });
+        fields.add(background);
+    };
+    jellyFishFieldsObj.src = 'jellyfishfields.png';
+
+// Spongebob
+
+let bob = new Konva.Layer();
+    stage.add(bob)
+
+let groupBob = new Konva.Group({
+    draggable: true
+});
+
+bob.add(groupBob)
+
+    let SpongebobObj = new Image();
+    SpongebobObj.onload = function () {
+        let Spongebob = new Konva.Image({
+            x: episode.Spongebob.x,
+            y: episode.Spongebob.y,
+            image: SpongebobObj,
+        });
+        groupBob.add(Spongebob);
+    };
+    SpongebobObj.src = 'spongebob.png';
+
+        // Spongebob Text
+
+
+let spongebobText = new Konva.Label({
+        x: episode.Spongebob.x +200,
+        y: episode.Spongebob.y +50,
+        opacity: 0.75,
+      });
+
+      spongebobText.add(
+        new Konva.Tag({
+          fill: 'black',
+          pointerDirection: 'down',
+          pointerWidth: 10,
+          pointerHeight: 10,
+          lineJoin: 'round',
+          shadowColor: 'black',
+          shadowBlur: 10,
+          shadowOffsetX: 10,
+          shadowOffsetY: 10,
+          shadowOpacity: 0.5,
+        })
+      );
+
+      spongebobText.add(
+        new Konva.Text({
+          text: 'Spongebob Squarepants',
+          fontFamily: 'Calibri',
+          fontSize: 18,
+          padding: 5,
+          fill: 'white',
+        })
+      );
+
+      groupBob.add(spongebobText)
+
+// Patrick
+
+let pat = new Konva.Layer();
+    stage.add(pat)
+
+let groupPat = new Konva.Group({
+    draggable: true
+});
+
+bob.add(groupPat)
+
+    let PatrickObj = new Image();
+    PatrickObj.onload = function () {
+        let Patrick = new Konva.Image({
+            x: episode.Patrick.x,
+            y: episode.Patrick.y,
+            image: PatrickObj,
+        });
+        groupPat.add(Patrick);
+    };
+    PatrickObj.src = 'patrick.png';
+
+
+
     // // The player's label
     // var monsterText = new Konva.Text({
     //         x: gameData.player.x - 20,
@@ -92,30 +150,6 @@ let episode = {
     //     });
     // layer.add(monsterText);
 
-    // // The opponent's image - images are a little tricky in Konva, and eventually we'll see exactly what's going
-    // // on in this chunk of code. For now, you can use this as a template for your own images. Note that we actually
-    // // require the use of two variable names here: I chose `monsterObj` and `monster`. Be careful not to mix these up.
-    let SpongebobObj = new Image();
-    SpongebobObj.onload = function () {
-        let Spongebob = new Konva.Image({
-            x: episode.Spongebob.x,
-            y: episode.Spongebob.y,
-            image: SpongebobObj,
-        });
-        layer.add(Spongebob);
-    };
-    SpongebobObj.src = 'spongebob.png';
-
-    let PatrickObj = new Image();
-    PatrickObj.onload = function () {
-        let Patrick = new Konva.Image({
-            x: episode.Patrick.x,
-            y: episode.Patrick.y,
-            image: PatrickObj,
-        });
-        layer.add(Patrick);
-    };
-    ParickObj.src = 'patrick.png';
 
     // // The opponent's label - this label is more advanced and requires a fair bit of code. It was adapted from
     // // the Label example in the Konva tutorial. There are some other interesting examples of labels on this page
