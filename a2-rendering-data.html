@@ -22,15 +22,13 @@
 let episode = {
         Spongebob: {
             name: "Spongebob",
-            jellyfish: 0,
-            nets: 0,
+            nets: 10,
             x: 500,
             y: 325,
         },
         Patrick: {
             name: "Patrick",
-            jellyfish: 0,
-            nets: 0,
+            jellyfish: 10,
             x: 850,
             y: 325,
         }
@@ -124,7 +122,7 @@ let groupPat = new Konva.Group({
     draggable: true
 });
 
-bob.add(groupPat)
+pat.add(groupPat)
 
     let PatrickObj = new Image();
     PatrickObj.onload = function () {
@@ -137,49 +135,58 @@ bob.add(groupPat)
     };
     PatrickObj.src = 'patrick.png';
 
+let patrickText = new Konva.Label({
+        x: episode.Patrick.x +200,
+        y: episode.Patrick.y +400,
+        opacity: 0.75,
+      });
 
+      patrickText.add(
+        new Konva.Tag({
+          fill: 'black',
+          pointerDirection: 'up',
+          pointerWidth: 10,
+          pointerHeight: 10,
+          lineJoin: 'round',
+          shadowColor: 'black',
+          shadowBlur: 10,
+          shadowOffsetX: 10,
+          shadowOffsetY: 10,
+          shadowOpacity: 0.5,
+        })
+      );
 
-    // // The player's label
-    // var monsterText = new Konva.Text({
-    //         x: gameData.player.x - 20,
-    //         y: gameData.player.y - 40,
-    //         text: gameData.player.name,
-    //         fontSize: 20,
-    //         fontFamily: 'Calibri',
-    //         fill: 'black',
-    //     });
-    // layer.add(monsterText);
+      patrickText.add(
+        new Konva.Text({
+          text: 'Patrick Star',
+          fontFamily: 'Calibri',
+          fontSize: 18,
+          padding: 5,
+          fill: 'white',
+        })
+      );
 
+      groupPat.add(patrickText)
 
-    // // The opponent's label - this label is more advanced and requires a fair bit of code. It was adapted from
-    // // the Label example in the Konva tutorial. There are some other interesting examples of labels on this page
-    // // too which you might want to try out.
-    // var labelLeft = new Konva.Label({
-    //     x: gameData.opponent.x + 90,
-    //     y: gameData.opponent.y + 40,
-    //     opacity: 0.75,
-    // });
+        // Patrick Jellyfish
 
-    // labelLeft.add(
-    //     new Konva.Tag({
-    //       fill: 'green',
-    //       pointerDirection: 'left',
-    //       pointerWidth: 20,
-    //       pointerHeight: 28,
-    //       lineJoin: 'round',
-    //     })
-    // );
+let patJellyfishObj = new Image();
+patJellyfishObj.onload = function () {
 
-    // labelLeft.add(
-    //     new Konva.Text({
-    //       text: gameData.opponent.name,
-    //       fontFamily: 'Calibri',
-    //       fontSize: 18,
-    //       padding: 5,
-    //       fill: 'white',
-    //     })
-    // );
-    // layer.add(labelLeft)
+        for (let i = 0; i < episode.Patrick.lives; i++) {
+
+          let patJellyfish = new Konva.Image({
+               x: 50 + i*40,
+               y: 5,
+               image: patJellyfishObj,
+              //  scaleX: 0.3,
+              //  scaleY: 0.3
+          });
+          pat.add(patJellyfish);
+     }
+};
+
+patJellyfishObj.src = 'jellyfish.png';
 
 
     // // The hearts representing the player's lives. The way I've implemented requires the JavaScript `for` loop,
