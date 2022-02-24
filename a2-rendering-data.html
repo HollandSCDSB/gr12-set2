@@ -16,7 +16,7 @@
         height: window.innerHeight
     });
     let layer = new Konva.Layer();
-	stage.add(layer); // add the layer to the stage
+	stage.add(layer); 
 
 
 let episode = {
@@ -28,7 +28,7 @@ let episode = {
         },
         Patrick: {
             name: "Patrick",
-            jellyfish: 10,
+            jellyfish: 20,
             x: 850,
             y: 325,
         }
@@ -37,7 +37,7 @@ let episode = {
 
     // // ---- The rendering begins here ----- //
 
-    addGrid(Konva, layer); // comment this line to remove the grid
+    // addGrid(Konva, layer);
 
 // background
 
@@ -113,6 +113,28 @@ let spongebobText = new Konva.Label({
 
       groupBob.add(spongebobText)
 
+         // Spongebob Nets
+
+let groupNets = new Konva.Group();
+bob.add(groupNets)
+
+let bobNetsObj = new Image();
+bobNetsObj.onload = function () {
+
+        for (let i = 0; i < episode.Spongebob.nets; i++) {
+
+          let bobNets = new Konva.Image({
+               x: 10 + i*65,
+               y: 700,
+               image: bobNetsObj,
+          });
+          groupNets.add(bobNets);
+     }
+};
+
+bobNetsObj.src = 'net.png';
+
+
 // Patrick
 
 let pat = new Konva.Layer();
@@ -134,6 +156,8 @@ pat.add(groupPat)
         groupPat.add(Patrick);
     };
     PatrickObj.src = 'patrick.png';
+
+      // Patrick Text
 
 let patrickText = new Konva.Label({
         x: episode.Patrick.x +200,
@@ -170,45 +194,24 @@ let patrickText = new Konva.Label({
 
         // Patrick Jellyfish
 
+let groupJellyfish = new Konva.Group();
+pat.add(groupJellyfish)
+
 let patJellyfishObj = new Image();
 patJellyfishObj.onload = function () {
 
-        for (let i = 0; i < episode.Patrick.lives; i++) {
+        for (let i = 0; i < episode.Patrick.jellyfish; i++) {
 
           let patJellyfish = new Konva.Image({
-               x: 50 + i*40,
+               x: 1300 + i*(-65),
                y: 5,
                image: patJellyfishObj,
-              //  scaleX: 0.3,
-              //  scaleY: 0.3
           });
-          pat.add(patJellyfish);
+          groupJellyfish.add(patJellyfish);
      }
 };
 
 patJellyfishObj.src = 'jellyfish.png';
-
-
-    // // The hearts representing the player's lives. The way I've implemented requires the JavaScript `for` loop,
-    // // which we will be looking at formally in the next assignment. You are not required to use this technique in
-    // // your own rendering. Feel free to just display the number of lives using text instead if you'd like.
-    // var heartObj = new Image();
-    // heartObj.onload = function () {
-    //     for (let i = 0; i < gameData.player.lives; i++) {
-
-    //         var heart = new Konva.Image({
-    //             x: 50 + i*40,
-    //             y: 5,
-    //             image: heartObj,
-    //             scaleX: 0.3,
-    //             scaleY: 0.3
-    //         });
-    //         layer.add(heart);
-    //     }
-    // };
-    // heartObj.src = 'heart.png';
-
-    //----- Ignore everything below here for now -----//
 
 </script>
 </body>
