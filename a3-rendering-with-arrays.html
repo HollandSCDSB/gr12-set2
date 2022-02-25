@@ -21,50 +21,131 @@
     //----- Ignore everything above here for now -----//
 
     // The data structure to hold the state of the scene
-    let sceneData = {
-        backgroundColor: "lightblue",
-        ringXs: [20, 70, 150, 200, 260, 310],
-        stars: [
-            { x: 70, y: 130, color: "red", numPoints: 3 },
-            { x: 110, y: 50, color: "orange", numPoints: 4 },
-            { x: 220, y: 40, color: "yellow", numPoints: 5 },
-            { x: 300, y: 100, color: "green", numPoints: 6 },
-            { x: 350, y: 200, color: "blue", numPoints: 7 },
+    let episode = {
+        
+        // krabs: {
+        //     xPosition: [20, 70, 150, 200, 260, 310],
+        //     yPosition: [25, 75, 150, 225, 300, 375],
+        //     scale: [0.3, 0.15, 0.75, 1, 0.3, 0.6]
+        //     },
+        Spongbob:  {
+            x: [20, 70, 150, 200, 260, 310],
+            y: [25, 75, 150, 225, 300, 375],
+            scale: [0.3, 0.15, 0.75, 1, 0.3, 0.6]
+            },
+
+        // plankton:  {
+        //     xPosition: [20, 70, 150, 200, 260, 310],
+        //     yPosition: [25, 75, 150, 225, 300, 375],
+        //     xScale: [],
+        //     yScale: []
+        //     },
+        bubbles: [
+            { x: 100, y: 450+(Math.cos(100))*100, color: "red", numPoints: 10, innerRadius: 10, outerRadius: 40, strokeWidth: 4},
+            { x: 200, y: 450+(Math.cos(200))*100, color: "orange", numPoints: 4, fill: "black", innerRadius: 20, outerRadius: 10, strokeWidth: 5 },
+            { x: 300, y: 450+(Math.cos(300))*100, color: "yellow", numPoints: 5, fill: "yellow", innerRadius: 30, outerRadius: 50, strokeWidth: 6 },
+            { x: 400, y: 450+(Math.cos(400))*100, color: "green", numPoints: 6, innerRadius: 50, outerRadius: 70, strokeWidth: 4 },
+            { x: 500, y: 450+(Math.cos(500))*100, color: "blue", numPoints: 7, fill: "purple", innerRadius: 15, outerRadius: 60, strokeWidth: 1 },
+            { x: 600, y: 450+(Math.cos(600))*100, color: "red", numPoints: 10, innerRadius: 60, outerRadius: 40, strokeWidth: 5},
+            { x: 700, y: 450+(Math.cos(700))*100, color: "orange", numPoints: 4, fill: "black", innerRadius: 70, outerRadius: 20, strokeWidth: 3 },
+            { x: 800, y: 450+(Math.cos(800))*100, color: "yellow", numPoints: 5, fill: "yellow", innerRadius: 30, outerRadius: 30, strokeWidth: 4 },
+            { x: 900, y: 450+(Math.cos(900))*100, color: "green", numPoints: 6, innerRadius: 10, outerRadius: 40, strokeWidth: 7 },
+            { x: 1000, y: 450+(Math.cos(1000))*100, color: "blue", numPoints: 7, fill: "purple", innerRadius: 50, outerRadius: 50, strokeWidth: 6 },
         ]
     }
 
     // ---- The rendering begins here ----- //
 
-    addGrid(Konva, layer); // comment this line to remove the grid
+
+// background
+
+let kitchen = new Konva.Layer();
+    stage.add(kitchen)
+
+    let kitchenBackground = new Image();
+    kitchenBackground.onload = function () {
+        let background = new Konva.Image({
+            x: 0,
+            y: 0,
+            image: kitchenBackground,
+        });
+        kitchen.add(background);
+    };
+    kitchenBackground.src = 'kitchen.png';
+
+
+    addGrid(Konva, layer);
+
+// Krabs
+
+// Spongebob
+
+let bob = new Konva.Layer();
+    stage.add(bob)
+
+let groupBob = new Konva.Group({
+    draggable: true
+});
+
+bob.add(groupBob)
+
+    let SpongebobObj = new Image();
+    SpongebobObj.onload = function () {
+        let Spongebob = new Konva.Image({
+            for (let i = 0; i < episode.Spongebob.length; i++) {
+                x: episode.Spongebob[i].x,
+            },
+            for (let i = 0; i < episode.Spongebob.length; i++) {
+                y: episode.Spongebob[i].y,
+            },
+            for (let i = 0; i < episode.Spongebob.length; i++) {
+                scaleX: episode.Spongebob[i].scale,
+            },
+            for (let i = 0; i < episode.Spongebob.length; i++) {
+                scaleY: episode.Spongebob[i].scale,
+            },
+                image: SpongebobObj,
+        });
+        groupBob.add(Spongebob);
+    };
+    SpongebobObj.src = 'spongebob.png';
+
+
+
 
     // Go through the RingXs array, and render a ring at each x-value in the array
     // All the y-values will be 400
-    for (let i = 0; i < sceneData.ringXs.length; i++) {
-        var ring = new Konva.Ring({
-            x: sceneData.ringXs[i],
-            y: 400,
-            innerRadius: 5,
-            outerRadius: 20,
-            fill: 'yellow',
-            stroke: 'black',
-            strokeWidth: 1,
-        });
-        layer.add(ring);
-    }
 
-    // Go through the stars array, and render each star object
-    for (let i = 0; i < sceneData.stars.length; i++) {
-        var star = new Konva.Star({
-            x: sceneData.stars[i].x,
-            y: sceneData.stars[i].y,
-            numPoints: sceneData.stars[i].numPoints,
-            innerRadius: 20,
-            outerRadius: 40,
-            fill: sceneData.stars[i].color,
-            stroke: 'black',
-            strokeWidth: 4,
+    // for (let i = 0; i < episode.bubbles.length; i++) {
+    //     let bubble = new Konva.Ring({
+    //         x: sceneData.ringXs[i],
+    //         y: 400,
+    //         innerRadius: 5,
+    //         outerRadius: 20,
+    //         fill: 'yellow',
+    //         stroke: 'black',
+    //         strokeWidth: 1,
+    //     });
+    //     layer.add(ring);
+    // }
+
+    // // Go through the stars array, and render each star object
+
+let bub = new Konva.Layer();
+stage.add(bub)
+
+    for (let i = 0; i < episode.bubbles.length; i++) {
+        let bubbles = new Konva.Star({
+            x: episode.bubbles[i].x,
+            y: episode.bubbles[i].y,
+            numPoints: episode.bubbles[i].numPoints,
+            innerRadius: episode.bubbles[i].innerRadius,
+            outerRadius: episode.bubbles[i].outerRadius,
+            fill: episode.bubbles[i].fill,
+            stroke: episode.bubbles[i].color,
+            strokeWidth: episode.bubbles[i].strokeWidth,
         });
-        layer.add(star);
+        bub.add(bubbles);
     }
 
     //----- Ignore everything below here for now -----//

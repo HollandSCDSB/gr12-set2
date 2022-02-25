@@ -9,23 +9,324 @@
 <div id="konvaCanvas"></div>
 <script>
 	'use strict'
+    let episode = {
+        bubbles: [
+            { x: 100, y: 100+(Math.sin(100))*100, color: "white", numPoints: 10, innerRadius: 10, outerRadius: 40, strokeWidth: 4},
+            { x: 200, y: 100+(Math.sin(200))*100, color: "lightblue", numPoints: 4, fill: "white", innerRadius: 20, outerRadius: 10, strokeWidth: 5 },
+            { x: 300, y: 100+(Math.sin(300))*100, color: "white", numPoints: 5, fill: "lightblue", innerRadius: 30, outerRadius: 50, strokeWidth: 6 },
+            { x: 400, y: 100+(Math.sin(400))*100, color: "lightblue", numPoints: 6, innerRadius: 50, outerRadius: 70, strokeWidth: 4 },
+            { x: 500, y: 100+(Math.sin(500))*100, color: "white", numPoints: 7, fill: "lightblue", innerRadius: 15, outerRadius: 60, strokeWidth: 1 },
+            { x: 600, y: 100+(Math.sin(600))*100, color: "lightblue", numPoints: 10, innerRadius: 60, outerRadius: 40, strokeWidth: 5},
+            { x: 700, y: 100+(Math.sin(700))*100, color: "white", numPoints: 4, fill: "lightblue", innerRadius: 70, outerRadius: 20, strokeWidth: 3 },
+            { x: 800, y: 100+(Math.sin(800))*100, color: "lightblue", numPoints: 5, fill: "white", innerRadius: 30, outerRadius: 30, strokeWidth: 4 },
+            { x: 900, y: 100+(Math.sin(900))*100, color: "white", numPoints: 6, innerRadius: 10, outerRadius: 40, strokeWidth: 7 },
+            { x: 1000, y: 100+(Math.sin(1000))*100, color: "lightblue", numPoints: 7, fill: "white", innerRadius: 50, outerRadius: 50, strokeWidth: 6 },
+            ]
+        jellyfish: []
+}
 
-    let stage = new Konva.Stage({
+let stage = new Konva.Stage({
         container: 'konvaCanvas',
-        width: window.innerWidth,
-        height: window.innerHeight
+        width: 1920,
+        height: 970
+  
     });
-    let layer = new Konva.Layer();
-	stage.add(layer); // add the layer to the stage
 
-    //----- Ignore everything above here for now -----//
+// Background
 
-    // Create a data structure here for your scene
-    let sceneData = {
+    let background = new Konva.Layer()
+    stage.add(background);
+
+    let sky = new Konva.Rect({
+        x: 0,
+        y: 0,
+        width: 2000,
+        height: 1000,
+        fill: '#72d4db'
+
+      });
+
+      background.add(sky);    
+
+    // Stars
+
+let stars = new Konva.Layer()
+stage.add(stars)
+
+let groupStars = new Konva.Group({
+    draggable: true
+})
+stars.add(groupStars)
+
+    for (let i = 0; i < 10; i++) {
+      let starPurple = new Konva.Star({
+          x: i*250 + 100,
+          y: i*250 + 100,
+          numPoints: 6,
+          innerRadius: 100,
+          outerRadius: 130,
+          stroke: 'purple',
+          strokeWidth: 5,
+        });
+        groupStars.add(starPurple);
+      
+    }
+
+    for (let i = 0; i < 10; i++) {
+      let starOrange = new Konva.Star({
+          x: i*255 + 400,
+          y: i*255 + 100,
+          numPoints: 8,
+          innerRadius: 70,
+          outerRadius: 100,
+          stroke: '#ffb163',
+          strokeWidth: 3,
+        });
+        groupStars.add(starOrange);
+      
+    }
+
+    for (let i = 0; i < 10; i++) {
+      let starGreen = new Konva.Star({
+          x: i*255 - 500,
+          y: i*255 - 100,
+          numPoints: 7,
+          innerRadius: 70,
+          outerRadius: 100,
+          stroke: '#8bf56e',
+          strokeWidth: 7,
+        });
+        groupStars.add(starGreen);
+      
+    }
+
+    for (let i = 0; i < 10; i++) {
+      let starYellow = new Konva.Star({
+          x: i*300 -1000,
+          y: i*300 - 250,
+          numPoints: 9,
+          innerRadius: 130,
+          outerRadius: 150,
+          stroke: '#fafa6e',
+          strokeWidth: 5,
+        });
+        groupStars.add(starYellow);
+      
+    }
+
+    for (let i = 0; i < 10; i++) {
+      let starPink = new Konva.Star({
+          x: i*275 + 750,
+          y: i*275 + 75,
+          numPoints: 10,
+          innerRadius: 75,
+          outerRadius: 115,
+          stroke: '#f173ff',
+          strokeWidth: 8,
+        });
+        groupStars.add(starPink);
 
     }
 
-    // ---- Start your rendering here ----- //
+    for (let i = 0; i < 10; i++) {
+      let starBlue = new Konva.Star({
+          x: i*275 + 1250,
+          y: i*275 + 100,
+          numPoints: 7,
+          innerRadius: 125,
+          outerRadius: 150,
+          stroke: '#0800a1',
+          strokeWidth: 4,
+        });
+        groupStars.add(starBlue);
+
+    }
+
+    // Bubbles
+
+let bub = new Konva.Layer();
+let groupBub = new Konva.Group({
+    draggable: true
+})
+stage.add(bub)
+bub.add(groupBub)
+
+    for (let i = 0; i < episode.bubbles.length; i++) {
+        let bubbles = new Konva.Star({
+            x: episode.bubbles[i].x,
+            y: episode.bubbles[i].y,
+            numPoints: episode.bubbles[i].numPoints,
+            innerRadius: episode.bubbles[i].innerRadius,
+            outerRadius: episode.bubbles[i].outerRadius,
+            fill: episode.bubbles[i].fill,
+            stroke: episode.bubbles[i].color,
+            strokeWidth: episode.bubbles[i].strokeWidth,
+        });
+        groupBub.add(bubbles);
+    }
+
+// Patrick
+
+let pat = new Konva.Layer();
+stage.add(pat)
+
+let groupPat = new Konva.Group({
+    draggable: true
+});
+
+pat.add(groupPat)
+
+ let leftarm = new Konva.Wedge({
+        x: stage.width() / 3.15,
+        y: stage.height() / 2,
+        radius: 70,
+        angle: 60,
+        fill: 'pink',
+        stroke: 'pink',
+        strokeWidth: 4,
+        rotation: 0,
+      });
+
+
+    groupPat.add(leftarm); // add the shape to the layer
+
+    let rightarm = new Konva.Wedge({
+        x: stage.width() / 2.2,
+        y: stage.height() / 2,
+        radius: 70,
+        angle: 60,
+        fill: 'pink',
+        stroke: 'pink',
+        strokeWidth: 4,
+        rotation: 120,
+      });
+
+      groupPat.add(rightarm);
+
+    let leftleg = new Konva.Wedge({
+        x: stage.width() / 2.75,
+        y: stage.height() / 1.5,
+        radius: 80,
+        angle: 60,
+        fill: 'pink',
+        stroke: 'pink',
+        strokeWidth: 4,
+        rotation: -120,
+      });
+
+      groupPat.add(leftleg);
+
+    let rightleg = new Konva.Wedge({
+        x: stage.width() / 2.45,
+        y: stage.height() / 1.5,
+        radius: 80,
+        angle: 60,
+        fill: 'pink',
+        stroke: 'pink',
+        strokeWidth: 4,
+        rotation: -120,
+      });
+
+      groupPat.add(rightleg);
+
+    let head = new Konva.Wedge({
+        x: stage.width() / 2.6,
+        y: stage.height() / 2.45,
+        radius: 100,
+        angle: 60,
+        fill: 'pink',
+        stroke: 'pink',
+        strokeWidth: 4,
+        rotation: 60,
+      });
+
+      groupPat.add(head);
+
+    let body = new Konva.Rect({
+        x: 645,
+        y: 485,
+        width: 190,
+        height: 70,
+        fill: 'pink',
+        stroke: 'pink',
+        strokeWidth: 4,
+      });
+
+
+      groupPat.add(body);
+
+      let pants = new Konva.Rect({
+        x: 645,
+        y: 555,
+        width: 190,
+        height: 45,
+        fill: '#acf075',
+        stroke: '#acf075',
+        strokeWidth: 4,
+      });
+
+      groupPat.add(pants);
+
+      let pantleft = new Konva.Rect({
+        x: 670,
+        y: 600,
+        width: 55,
+        height: 25,
+        fill: '#acf075',
+        stroke: '#acf075',
+        strokeWidth: 4,
+      });
+
+      groupPat.add(pantleft);
+
+      let pantright = new Konva.Rect({
+        x: 755,
+        y: 600,
+        width: 55,
+        height: 25,
+        fill: '#acf075',
+        stroke: '#acf075',
+        strokeWidth: 4,
+      });
+
+      groupPat.add(pantright);
+
+      let leftEye = new Konva.Ellipse({
+        x: 700,
+        y: 500,
+        radiusX: 10,
+        radiusY: 20,
+        fill: 'white',
+        stroke: 'black',
+        strokeWidth: 4,
+      });
+
+      groupPat.add(leftEye);
+
+      let rightEye = new Konva.Ellipse({
+        x: 775,
+        y: 500,
+        radiusX: 10,
+        radiusY: 20,
+        fill: 'white',
+        stroke: 'black',
+        strokeWidth: 4,
+      });
+
+      groupPat.add(rightEye);
+
+      let smile = new Konva.Arc({
+        x: 735,
+        y: 525,
+        innerRadius: 10,
+        outerRadius: 5,
+        angle: 180,
+        fill: 'red',
+        stroke: 'black',
+        strokeWidth: 4,
+      });
+
+      groupPat.add(smile)
 
     addGrid(Konva, layer); // comment this line to remove the grid
 
