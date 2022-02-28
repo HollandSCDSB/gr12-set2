@@ -1,0 +1,4 @@
+[0225/141849.035:ERROR:process_reader_win.cc(155)] SuspendThread: Access is denied. (0x5)
+[0225/141849.163:ERROR:process_reader_win.cc(155)] SuspendThread: Access is denied. (0x5)
+[0225/141849.172:ERROR:process_reader_win.cc(127)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0225/141849.181:ERROR:exception_snapshot_win.cc(100)] thread ID 9120 not found in process
