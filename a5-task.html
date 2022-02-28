@@ -109,31 +109,6 @@
       layer.add(redChecker)
     }
 
-        // Red Checkers Text
-
-    let redText = new Konva.Label({
-        x: 200,
-        y: 10,
-        opacity: 0.75,
-      });
-
-      redText.add(
-    new Konva.Tag({
-          fill: 'red',
-        })
-      );
-
-      redText.add(
-    new Konva.Text({
-          text: 'Red Checkers',
-          fontFamily: 'Calibri',
-          fontSize: 18,
-          padding: 5,
-          fill: 'black',
-        })
-      );
-      
-    layer.add(redText)
 
     // Black Checkers
 
@@ -151,34 +126,33 @@
             fill: 'black'
       })
       layer.add(blackChecker)
-    }
 
-        // Black Checker Text
+// Text
 
-    let blackText = new Konva.Label({
+let redText = new Konva.Label({
         x: 200,
         y: 10,
         opacity: 0.75,
       });
 
-      blackText.add(
+      redText.add(
     new Konva.Tag({
-          fill: 'black',
+          fill: 'red',
         })
       );
 
-      blackText.add(
+      redText.add(
     new Konva.Text({
-          text: 'Red Checkers',
+          text: 'Checkers',
           fontFamily: 'Calibri',
           fontSize: 18,
           padding: 5,
-          fill: 'white',
+          fill: 'black',
         })
       );
       
-    layer.add(blackText)
-
+    layer.add(redText)
+    }
 
     //----- Ignore everything below here for now -----//
 
