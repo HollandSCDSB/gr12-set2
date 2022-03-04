@@ -7,9 +7,7 @@ let square = [
 
 let n = square.length // n represents the square's length/width
 
-// if (x == 1 || x == 2) {
-//     console.log("x is either 1 or 2")
-// }
+// ***I didn't see the answer since I was gone for the first half of the class. This was almost fully complete Thursday I just had to tweak a couple things and properly sync the changes.
 
 let top = square[0]
 let topSum = 0
@@ -21,6 +19,7 @@ let topLeft = top[0]
 let topRight = top[n-1]
 let bottomLeft = bottom[0]
 let bottomRight = bottom[n-1]
+let perimeter = 0
 
 for (let i = 0; i < n; i++){
     topSum += top[i]
@@ -29,7 +28,7 @@ for (let i = 0; i < n; i++){
     right += square[i][n-1]
 }
 
-let perimeter = top + left + right + bottom - topLeft - topRight - bottomLeft - bottomRight
+perimeter += topSum + left + right + bottomSum - topLeft - topRight - bottomLeft - bottomRight
 
 // console.log(perimeter)
 
@@ -38,30 +37,7 @@ console.log(bottomSum)
 console.log(left)
 console.log(right)
 console.log(topLeft)
-console.log('The sum of the perimeter is'+perimeter)
-
-// let square = [
-// 	[1, 2, 7],
-// 	[4, 5, 1],
-// 	[7, 1, 2]
-// ]
-
-// let n = square.length
-// let result = true
-
-// for (let row = 0; row < n; row++) {
-// 	let total = 0
-// 	for (let col = 0; col < n; col++) {
-// 		total += square[row][col]
-// 	}
-// 	console.log(`Row ${row+1} adds to ${total}.`)
-// 	if (total != 10)
-// 		result = false
-// }
-
-// if (result == true) {
-// 	console.log("All rows add to 10.")
-// }
-// else {
-// 	console.log("All rows do not add to 10.")
-// }
+console.log(topRight)
+console.log(bottomLeft)
+console.log(bottomRight)
+console.log(`The sum of the perimeter is ${perimeter}`)
