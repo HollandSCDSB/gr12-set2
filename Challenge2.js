@@ -38,7 +38,7 @@ console.log(bottomSum)
 console.log(left)
 console.log(right)
 console.log(topLeft)
-console.log()
+console.log('The sum of the perimeter is'+perimeter)
 
 // let square = [
 // 	[1, 2, 7],
